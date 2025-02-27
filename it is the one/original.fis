@@ -1,0 +1,56 @@
+[System]
+Name='mamdanitype1_IMU_Input_3'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Max ax'
+Range=[-5 5]
+NumMFs=2
+MF1='High':'smf',[-0.322299651567945 4.08364083640836]
+MF2='Medium':'gaussmf',[0.713901 1.35]
+
+[Input2]
+Name='Min az'
+Range=[-8.5 2.5]
+NumMFs=3
+MF1='Low':'zmf',[-4.08786231884058 -1.55163043478261]
+MF2='medium':'gaussmf',[0.75 -2.963]
+MF3='High':'gaussmf',[0.75 -2.04717]
+
+[Input3]
+Name='Min wy'
+Range=[-8 4]
+NumMFs=3
+MF1='Low':'trapmf',[-9 -4 -1.1 0.745]
+MF2='Medium':'trapmf',[-1.77 -0.9 -0.6 1.175]
+MF3='mf3':'gaussmf',[0.3 -0.5]
+
+[Input4]
+Name='Max az'
+Range=[-1 5]
+NumMFs=3
+MF1='High':'smf',[0.9 2]
+MF2='Medium':'gaussmf',[0.43 0.92]
+MF3='Low':'gaussmf',[0.43 0.4]
+
+[Output1]
+Name='Output'
+Range=[0 4]
+NumMFs=3
+MF1='Level':'gaussmf',[0.22 1]
+MF2='Ascend':'gaussmf',[0.22 2]
+MF3='Descend':'gaussmf',[0.22 3]
+
+[Rules]
+1 0 1 1, 2 (0.9) : 1
+2 1 0 3, 1 (1) : 1
+2 2 2 2, 3 (0.9) : 1
