@@ -96,16 +96,23 @@ the **weight associated with each output** (e.g., a weight of 0.9 for ascending 
 the **defuzzification method** for each rule’s membership functions, as well as the number of hidden units and the **learning rate** of the LSTM network. 
 Afterward, the fuzzy inputs are fed into the LSTM network.
 
-![Membership functions obtained from human knowledge(up) and the Membership functions obtained after the GA optimization(down)](https://github.com/user-attachments/assets/e94dfdcd-ae29-4bfc-9859-0d7c10c4d47d)
+| ![Membership functions obtained from human knowledge(up) and the Membership functions obtained after the GA optimization(down)](https://github.com/user-attachments/assets/e94dfdcd-ae29-4bfc-9859-0d7c10c4d47d) |
+|:--:|
+| *Membership functions obtained from human knowledge(up) and the Membership functions obtained after the GA optimization(down)* |
 
-![Learning process of Optimized Fuzzy-LSTM with 3 labels](https://github.com/user-attachments/assets/ff99283b-2a8d-491f-838c-9bcd49a3d9cc)
+| ![Learning process of Optimized Fuzzy-LSTM with 3 labels](https://github.com/user-attachments/assets/ff99283b-2a8d-491f-838c-9bcd49a3d9cc) |
+|:--:|
+| *Learning process of Optimized Fuzzy-LSTM with 3 labels* |
 
 In this research, the aim is to detect the terrain type immediately after the toe of the foot lifts off the ground (toe off). 
 The separation of the toe from the ground occurs between the peaks of $(ωy)^n$, $ω_{max}$, and the first crossing of zero in $(ωy)^n$, $ω0$, from positive to negative.  
 This research requires real-time classification because its application is in assistive devices for walking.
-![Optimized Fuzzy-LSTM](https://github.com/user-attachments/assets/b880ee93-29c6-4369-9da9-3928ab01f59c)
 
-## Validation
+| ![Optimized Fuzzy-LSTM](https://github.com/user-attachments/assets/b880ee93-29c6-4369-9da9-3928ab01f59c) |
+|:--:|
+| *Optimized Fuzzy-LSTM* |
+
+4. **Validation**
 
 For validation and evaluation of the models, we used the accuracy and F1-score metrics. Accuracy is the number of correctly predicted instances divided by the total number of 
 predictions made. The formula for accuracy is given by:
@@ -143,22 +150,51 @@ The confusion matrix is a method used for evaluating the precision and performan
 It is displayed as a table where the columns represent the algorithm’s predictions, and the rows represent the actual labels. 
 Each cell in the table shows the number of samples that were correctly identified by the algorithm based on their actual labels.
 
+| ![CNN-LSTM confusion matrix with 3 labels](https://github.com/user-attachments/assets/93be92ff-236e-422a-a882-3f6c0785f06b) |
+|:--:|
+| *CNN-LSTM confusion matrix with 3 labels* |
+
+
+## Results
+By implementing the model used in the paper by Yu et al. [1], with 3 types of terrain (flat surface, upward slope, and downward slope), the model achieved 95% accuracy for real-time classification.
+
+| ![Given the data sampling rate of 100hz, this model could classify the terrain type after 690 ms](https://github.com/user-attachments/assets/90db5601-6b13-4a1c-8a2d-ca2f61f3e6e8) |
+|:--:|
+| *Given the data sampling rate of 100hz, this model could classify the terrain type after 690 ms* |
+
+Then, by adding 4 additional terrain types (upward stairs, downward stairs, pavement, and grass) and optimizing the parameters using the Genetic Algorithm, the real-time classification accuracy dropped to 86.6%.
+
+| ![CNN-LSTM confusion matrix with 7 labels](https://github.com/user-attachments/assets/196722e8-7c6b-4279-ac90-d6a4687d71aa) |
+|:--:|
+| *CNN-LSTM confusion matrix with 7 labels* |
+
+![image](https://github.com/user-attachments/assets/3f2a4e6a-6ec9-4a98-8826-5f7a849523a6)
+
+Finally, the Fuzzy-LSTM model was developed to detect 3 types of terrain (flat surface, upward stairs, and downward stairs), and its parameters were optimized using the Genetic Algorithm, achieving real-time accuracy of 73.3%.
+
+| ![Optimized Fuzzy-LSTM confusion matrix with 3 labels](https://github.com/user-attachments/assets/b7914698-c7f2-473d-9174-92d24b788639) |
+|:--:|
+| *Optimized Fuzzy-LSTM confusion matrix with 3 labels* |
+
+| ![Genetic Algorithm Process](https://github.com/user-attachments/assets/e73d6b1a-3371-472f-a8d0-7f02e8733796)|
+|:--:|
+| *Genetic Algorithm Process* |
 
 
 
+| ![Accuracy of different models](https://github.com/user-attachments/assets/21c9f75a-f113-4b49-b4cc-3272ffa0eeb5) |
+|:--:|
+| *Accuracy of different models* |
 
+| ![F1-Score of different models](https://github.com/user-attachments/assets/57a9eb90-4c25-44f9-9079-8b4802470f11) |
+|:--:|
+| *F1-Score of different models* |
 
+## Conclusion
+The proposed CNN-LSTM model performed well with 95% accuracy for real-time classification of walking terrain types. As the number of labels increased, the model’s performance decreased. The use of fuzzy logic instead of CNN reduced the accuracy, but with further optimization, better results could be achieved. Further improvements might lead to better real-time classification of walking terrain types.
 
-
-
-
-
-
-
-
-
-
-
+## Future Research
+Future research can benefit from applying genetic algorithms more effectively to identify suitable fuzzy rules for optimal labeling of data. The algorithm could allow adding and removing different fuzzy rules and membership functions. In the genetic algorithms' fitness function, both the labeling accuracy and the labeling speed should be considered to ensure the best performance for real-time labeling.
 
 
 
